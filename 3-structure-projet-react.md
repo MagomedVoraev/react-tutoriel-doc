@@ -17,6 +17,10 @@ De ce qui nous intéresse pour coder, voici la structure d'un projet React.
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta http-equiv="x-ua-compatible" content="ie=edge" />
+                <!-- on importe nos fonts ici comme pour html normal -->
+                <link rel="preconnect" href="https://fonts.gstatic.com">
+		        <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500;700&display=swap" rel="stylesheet">
+
                 <title>Modele</title>
             </head>
             <body>
@@ -36,15 +40,22 @@ De ce qui nous intéresse pour coder, voici la structure d'un projet React.
  - dossier **`styles`** dans lequel on :
     - fichier `_reset.css` avec nos styles reset
     - fichier `_vars.scss` dans lequel on déclare toutes nos vars scss
+        ```scss
+        $color: #bb5432;
+        $color-alt: #f1c5b6;
+        $color-light: #fff;
+        $gutter: 0.8rem;
+        $font: 'Spartan', sans-serif;
+        $transition-fast: 0.2s
+        ```
+
     - fichier `index.scss` dans lequel :
         ```scss
         @use 'reset';
         @use 'vars';
 
-        @font-face {
-            font-family: 'Roboto';
-            src: url('../assets/fonts/Roboto-Regular.ttf');
-        }
+        // On peut AUSSI importer la font de cette facon
+        // @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300;500;700&display=swap');
 
         body {
             font-family: 'Roboto', sans-serif;
@@ -60,12 +71,13 @@ De ce qui nous intéresse pour coder, voici la structure d'un projet React.
 
     // == Import : local
     // Composants
+    // ici, le nom TodoList doit être celui du MAIN COMPONENT
     import TodoList from 'src/components/TodoList';
 
     // == Render
     // 1. Élément React racine (celui qui contient l'ensemble de l'TodoList)
     //    => crée une structure d'objets imbriqués (DOM virtuel)
-    // ce nom (TodoList) doit être donné PAR RAPPORT au nom du MAIN component
+    // IDI ici pour ce nom (TodoList) doit être donné PAR RAPPORT au nom du MAIN component
     const rootReactElement = <TodoList />;
 
     // 2. La cible du DOM (là où la structure doit prendre vie dans le DOM)
