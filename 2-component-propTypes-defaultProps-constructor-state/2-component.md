@@ -173,6 +173,8 @@ Pour pouvoir utiliser le constructor, on doit faire plusieurs choses :
     ```
 
 ## `State`
+
+
 ## `setState`
 
 ## `fonction closure` ou `closure` (une fonction qui retourne une fonction)
@@ -183,3 +185,4 @@ Pour pouvoir utiliser le constructor, on doit faire plusieurs choses :
 ## `componentDidMount()`
 ## `componentDidUpdate()`
 ## `componentWillUnmount()`
+## `useRef`
