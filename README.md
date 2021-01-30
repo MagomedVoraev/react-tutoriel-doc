@@ -17,8 +17,40 @@ Les componenents sont créées par `dossiers` dans `src` => `components` => `Com
 
 #### Que se trouve dans chacun des fichiers
 
+1. Dans le fichier `index.js` :
+
+    ```js
+    import React from 'react';
+
+    import './style.scss';
 
 
+    const Component1 = () => (
+        <div>Contenu de mon Component</div>
+    );
+
+    // ceci est l'équivalent plus rapide de :
+    // const Component1 = () => {
+    //    return (
+    //        <div>Contenu de mon Component</div>
+    //    )
+    // }
+
+    export default Component;
+    ```
+
+2. Dans le fichier `style.scss`
+
+Dans ce fichier, on va importer le fichier `vars.scss` qui se trouve dans `src/styles` et qui contient toutes les variables que nous avons déclarés.
+
+Puis, on leur donne un alias de `v` _(PAS OBLIGATOIRE)_ afin de faciliter / accélerer l'écriture, et pouvoir écrire `v.$color` au lieu de `vars.$color` par exemple.
+
+    ```scss
+    // on importe nos vars qui se trouvent 
+    @use 'src/styles/vars' as v;
+
+    // ici, nous écrivons nos 
+    ```
 
 ### `propTypes`
 ### `defaultProps`
