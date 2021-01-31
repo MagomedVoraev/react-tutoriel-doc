@@ -1,6 +1,8 @@
 # Component
 Les components representent toutes les parties que composent une app.
 
+- Pour génèrer un component avec emmet : **`rce`**
+
 ## Dans le Component
 1. Dans le fichier `index.js` :
 
