@@ -18,7 +18,7 @@ Les components representent toutes les parties que composent une app.
 
     const Component1 = () => (
 
-        <div>Component1</div>
+        <div className="component">Component1</div>
 
         // on utilise le component importé
         <Component2 />
@@ -33,6 +33,8 @@ Les components representent toutes les parties que composent une app.
 
     export default Component1;
     ```
+**/!\ ATTENTION : POUR LES NOMS DE CLASS CSS, ON UTILISE EN JSX "className" et NON "class"**
+
 
 2. Dans le fichier `style.scss`
 

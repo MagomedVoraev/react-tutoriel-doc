@@ -123,62 +123,13 @@ constructor(props) {
 }
 ```
 
-<!--  -->
-3. Event handler
+
+3. Event handler + **NE PAS OUBLIER DE DESTRUCTURER** LA DONNÉE DYNAMIQUE
 On donne une fonction à exécuter sur un button par exemple qui `onClick` va enclancher la fonction `incrementCount()` qui aura pour message de changer le text de mon élément
 
 ```js
-// 1. JE TRANSFORME LA FONCTION EN COMPONENT (ON PEUT FAIRE PURECOMPONENT AUSSI)
-class TodoList extends PureComponent {
-  constructor(props) {
-    super(props)
-
-    // 2. J'INITIALISE LE STATE
-    this.state = {
-
-      // J'INITIALISE LA DONNÉE
-      count: 0,
-    }
-  }
-
-  // 4. JE CREE LA FONCTION POUR L'INCREMENTATION DE COUNT QUI SERA ENCLANCHÉE 
-  // A CHAQUE FOIS QUE JE CLIQUE SUR LE BUTTON
-  incrementCount () => {
+/// 3. J IMPORTE ET JE DESTRUCTURE LE COUNT, QUI EST UNE DONNÉE DYNAMIQUE QUI VARIE / CHANGE
     const { count } = this.state;
-
-    this.setState = {
-      count=+1,
-    }
-  }
-
-  render() {
-
-    return (
-      <div className="todoList">
-        // 3. JE CRÉE LA FONCTION SUR UN EVENT HANDLER
-        <button onClick={this.incrementCount} >
-          Incrémentaer
-        </button>
-      </div>
-    );
-  }
-}
-
-// == Export
-export default TodoList;
-```
-
-
-4. Coder la fonction `incrementCount()`
-
-```js
-incrementCount () => {
-  const { count } = this.state;
-
-  this.setState = {
-    count=+1,
-  }
-}
 ```
 
 
@@ -189,8 +140,6 @@ incrementCount () => {
 
 
 ## Final result 
-
-
 ```js
 // 1. JE TRANSFORME LA FONCTION EN COMPONENT (ON PEUT FAIRE PURECOMPONENT AUSSI)
 class TodoList extends PureComponent {
@@ -205,7 +154,7 @@ class TodoList extends PureComponent {
     }
   }
 
-  // 4. je crée la fonction qui setState count +1 à chaque fois que je clique sur le button
+  // 5. je crée la fonction qui setState count +1 à chaque fois que je clique sur le button
   incrementCount () => {
     const { count } = this.state;
 
@@ -215,10 +164,13 @@ class TodoList extends PureComponent {
   }
 
   render() {
+    
+    // 3. J IMPORTE ET JE DESTRUCTURE LE COUNT, QUI EST UNE DONNÉE DYNAMIQUE QUI VARIE / CHANGE
+    const { count } = this.state;
 
     return (
-      <div className="todoList">
-        // 3. JE CRÉE LA FONCTION SUR UN EVENT HANDLER
+      <div>
+        // 4. JE CRÉE LA FONCTION SUR UN EVENT HANDLER
         <button onClick={this.incrementCount} >
           Incrémentaer
         </button>
@@ -229,5 +181,4 @@ class TodoList extends PureComponent {
 
 // == Export
 export default TodoList;
-
 ```
