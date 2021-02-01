@@ -151,5 +151,119 @@ const Blog = () => (
 
 // == Export
 export default Blog;
+```
+
+
+
+12. Créer un dossier `selectors` dans `src`
+
+=> dedans on crée `ceQuiEstFiltré.js` (ici posts.js)
+
+On va y créer une fonction 
+```js
+/* eslint-disable import/prefer-default-export */
+/**
+ * Fonction permettant de filtrer les posts suivant une nom de categorie
+ * @param {Array} posts
+ * @param {String} categoryLabel
+ */
+export const getPostsByCategory = (posts, categoryLabel) => {
+  if (categoryLabel === 'Accueil') {
+    return posts;
+  }
+  return posts.filter((post) => (post.category === categoryLabel));
+};
+```
+
+
+13. On revient dans le mainComponent et on importe cette fonction pour l'utiliser dans le Router
+
+`import { getPostsByCategory } from 'src/selectors/posts';`
+
+```js
+// == Composant
+const Blog = () => (
+  <div className="blog">
+    <Header categories={categoriesData} />
+    <Switch>
+      {categoriesData.map((category) => (
+        <Route path={category.route} exact key={category.route}>
+          <Posts
+            // c'est ici que j'utilise la fonction AVEC les props
+            posts={getPostsByCategory(postsData, category.label)}
+            categoryLabel={category.label}
+          />
+        </Route>
+      ))}
+
+      <Route>
+        <Erreur404 />
+      </Route>
+    </Switch>
+    <Footer />
+  </div>
+);
+
+// == Export
+export default Blog;
+```
+
+
+14. Si on veut `redirect` à une route différente de la route entrée
+
+- importer `Redirect` dans notre `...from 'react-router-dom';`
+
+- on ajoute AVANT la route de 404 :
+```js
+<Redirect from="/jquery" to="/autre" />
+```
+
+final code: 
+```js
+// == Import npm
+import React from 'react';
+import {
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
+
+// == Import
+import Header from 'src/components/Header';
+import Posts from 'src/components/Posts';
+import Footer from 'src/components/Footer';
+
+import categoriesData from 'src/data/categories';
+import postsData from 'src/data/posts';
+
+import { getPostsByCategory } from 'src/selectors/posts';
+
+import Erreur404 from 'src/components/Erreur404';
+import './styles.scss';
+
+// == Composant
+const Blog = () => (
+  <div className="blog">
+    <Header categories={categoriesData} />
+    <Switch>
+      {categoriesData.map((category) => (
+        <Route path={category.route} exact key={category.route}>
+          <Posts
+            posts={getPostsByCategory(postsData, category.label)}
+            categoryLabel={category.label}
+          />
+        </Route>
+      ))}
+      <Redirect from="/jquery" to="/autre" />
+      <Route>
+        <Erreur404 />
+      </Route>
+    </Switch>
+    <Footer />
+  </div>
+);
+
+// == Export
+export default Blog;
 
 ```
