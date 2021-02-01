@@ -77,7 +77,7 @@ Le setState permet de changer les données de mes state déclarées plus haut.
 
 ```js
 // 1. créer la fonction fléchée
-changeMessage () => {
+changeMessage = () => {
   // 2. je destructure
   const { message } = this.state;
 
@@ -155,12 +155,12 @@ class TodoList extends PureComponent {
   }
 
   // 5. je crée la fonction qui setState count +1 à chaque fois que je clique sur le button
-  incrementCount () => {
+  incrementCount = () => {
     const { count } = this.state;
 
-    this.setState = {
+    this.setState = ({
       count=+1,
-    }
+    })
   }
 
   render() {
@@ -171,9 +171,7 @@ class TodoList extends PureComponent {
     return (
       <div>
         // 4. JE CRÉE LA FONCTION SUR UN EVENT HANDLER
-        <button onClick={this.incrementCount} >
-          Incrémentaer
-        </button>
+        <button onClick={this.incrementCount}>Incrémenter</button>
       </div>
     );
   }

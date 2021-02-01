@@ -16,12 +16,12 @@ class TodoList extends PureComponent {
   }
 
   // 5. je crée la fonction qui setState count +1 à chaque fois que je clique sur le button
-  incrementCount () => {
+  incrementCount = () => {
     const { count } = this.state;
 
-    this.setState = {
+    this.setState = ({
       count=+1,
-    }
+    })
   }
 
   render() {
@@ -42,5 +42,4 @@ class TodoList extends PureComponent {
 
 // == Export
 export default TodoList;
-
 ```

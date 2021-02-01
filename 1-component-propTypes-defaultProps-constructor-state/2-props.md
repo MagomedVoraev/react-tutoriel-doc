@@ -61,3 +61,21 @@ On déclare des valeurs défauts pour nos props, supposons que ma propType `done
     done: 'true';
   };
   ```
+
+
+## Utilisation des props dans le component parent
+
+```js
+const ComponentParent = () => {
+  return (
+    <ComponentEnfant
+    // je vais utiliser dedans toutes les props qui ont été déclarées
+    search={search}
+    currency=1
+    />
+  )
+}
+
+export default ComponentParent;
+```
+
