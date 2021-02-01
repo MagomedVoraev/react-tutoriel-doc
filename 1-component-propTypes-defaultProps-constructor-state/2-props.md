@@ -50,6 +50,8 @@ Supposons, dans notre `Componenet2`, on a la fonction suivante :
 
 ## `defaultProps`
 
+POUR CHACUNE DES PROPS qui n'est pas `isRequired`, on fait les `defaultProps`.
+
 On déclare des valeurs défauts pour nos props, supposons que ma propType `done` est par défaut à `true` alors on le mettra ici.
 
   ```js
