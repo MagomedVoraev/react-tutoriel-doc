@@ -99,3 +99,31 @@ export default Blog;
 ## `useEffect`
 **_on les voit après avoir vu le cours 7-ajax_**
 
+```js
+// Equivalant au componentDidUpdate
+  // La fonction de callback en paramètre du useEffect
+  // va être appellée APRES chaque render
+useEffect(() => {
+  console.log('Effet de bord de blog');
+});
+```
+
+
+```js
+// Ici en deuxième paramètre de useEffect, on met un tableau VIDE
+// La première fois qu'on render, useEffect ne peux pas comparer avec sa précédente valeur ( y'en a pas ), donc il execute le callback
+// A partir du deuxième render, useEffect peut comparer.
+// Sauf qu'il compare les variables à l'intérieure de son tableau ( deuxième paramètre qui en soit est optionnel )
+// Si jamais quelque chose évolue à l'interrieur de ce tableau, alors potentiellement le useEffect doit pouvoir changer, donc il rééxecute la fonction de callback
+// Sauf que là, le tableau est vide, donc il ne variera jamais.
+// Du coups il n'éxécutera la fonction de callback qu'une seule fois, au montage du composant
+// Et la fonction de nettoyage, qu'une seule fois aussi, au démontage du composant
+// On a donc codé l'equivalent de componentDidMount et componentWillUnmount
+
+useEffect(() => {
+  console.log('Effet de bord de blog');
+  return () => {
+    console.log('Nettoyage de l\'effet de bord de blog');
+  };
+}, []);
+```
