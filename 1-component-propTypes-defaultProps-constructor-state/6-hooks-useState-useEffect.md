@@ -1,5 +1,10 @@
-# `useState`
+# Hooks
+_Quand on parle de Hook, par convention, on parlde fonction qui commencent par `'use...'`_
+
+
+## `useState`
 [Hook - useState](https://fr.reactjs.org/docs/hooks-state.html)
+
 Use state permet d'utiliser l'équivalent de state et setState sans avoir à faire une class.
 
 ```js
@@ -89,3 +94,8 @@ const Blog = () => {
 // == Export
 export default Blog;
 ```
+
+
+## `useEffect`
+**_on les voit après avoir vu le cours 7-ajax_**
+
