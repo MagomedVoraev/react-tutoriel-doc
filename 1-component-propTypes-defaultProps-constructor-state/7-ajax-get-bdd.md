@@ -24,7 +24,7 @@
 
 - installer `yarn add core-js@3`
 
-- créer un dossier 'commons' dans src/ et dedans crée `app.js`
+- créer un dossier 'commons' dans src/ et dedans crée `api.js`
 
 - `import axios from 'axios'` + CODE avec URL de l'api :
 

@@ -1,5 +1,8 @@
 # Le router de React
 
+
+## Mettre en place un router de la NAV
+
 Permet d'afficher ou de cacher les COMPOSANTS, car en vrai, React compile tout notre code en UNE SEULE PAGE !
 
 Donc ce ne sont pas des PAGES qui sont affichées / cachées mais bien des COMPOSANTS / components.
@@ -265,5 +268,114 @@ const Blog = () => (
 
 // == Export
 export default Blog;
+```
 
+
+## Mettre en place une route de PARENT => CHILD
+
+[React Router - PARAMS](https://reactrouter.com/web/example/url-params)
+
+1. Dans le `MainComponent`, créer une `<Route></Route>` (**avant la 404**) et mettre le component child qu'on veut créer pour y être redirigé _(ne pas oublier de l'importer)_ et y déclarer le path comme attribut = `path="/article/:id"`
+
+```js
+<Route path="/article/:id">
+// ici, il faut mettre le childComponentName qui doit être renvoyé
+</Route>
+```
+
+2. Créer ce childComponentName justement et le préparer
+
+```js
+import React from 'react'
+import { useParams } from 'react-router-dom';
+
+import './childComponentName.scss';
+
+const childComponentName = () => {
+  return (
+    <div>
+      <h2>Titre</h2>
+    </div>
+  )
+}
+
+export default childComponentName;
+```
+
+
+3. Importer ce childComponent dans notre `mainComponent` + le mettre dans les balises JSX `Routes`
+
+```js
+<Route path="/:id">
+  <childComponentName />
+</Route>
+```
+
+4. Dans le `index.js` de `childComponentName`, utiliser les params, pour cela 2 étapes :
+ - `import { useParams } from 'react-router-dom';`
+ - et dans la fonction childComponentName : `const {id} = useParams();`
+ - pour tester : 
+    - `console.log(id);`
+    - on peut aller dans l'url et taper par exemple : `/8` à la fin du `localhost...` et voir si ça ressort bien en log
+
+5. Maintenant que ça marche, aller dans `mainComponent` et envoyer la data / posts _(dans lequel on a fait axios, récupération des données)_ et les envoyers en `props` à travers `childComponentName` attribut :
+
+```js
+<Route path="/:id">
+  <childComponentName posts={posts}/>
+</Route>
+```
+
+6. Aller dans `childComponentName` et récupérer ces données _(qui sont un objet)_ via les props de la fonction globale :
+
+```js
+// posts en props afin de les récupérer
+const childComponentName = ({posts}) => {}
+```
+
+7. Puis, on récupère **LE post** qu'on souhaite avec son `id` avec utilisation de la fonction `find` :
+
+```js
+const ArticleDetails = ({ posts }) => {
+  const { id } = useParams();
+
+  // ici, on cherche celui qui a un post.id qui est égal à id params entré dans le navigateur
+  const foundPost = posts.find((post) => parseInt(post.id, 10) === parseInt(id, 10));
+  console.log(id, foundPost)
+  
+  return (
+    <div className="singlePage">
+      // on renvoie le title du post trouvé
+      <h2 className="singlePage__title">Titre : {foundPost.title}</h2>
+    </div>
+  )
+}
+```
+
+8. Mais on peut aussi mettre une condition si jamais il n'a pas retrouvé, ce qui est une gestion des erreurs et une bonne chose à faire :
+
+**(+ code final)**
+```js
+import React from 'react'
+import { useParams } from 'react-router-dom';
+
+
+import './articleDetails.scss';
+
+const ArticleDetails = ({ posts }) => {
+  const { id } = useParams();
+
+  const foundPost = posts.find((post) => parseInt(post.id, 10) === parseInt(id, 10));
+  console.log(id, foundPost)
+  if (!foundPost) return (<h1 className="singlePage__title">Cet article n'existe pas </h1>)
+  else {
+    return (
+      <div className="singlePage">
+        <h2 className="singlePage__title">Titre : {foundPost.title}</h2>
+      </div>
+    )
+  }
+}
+
+export default ArticleDetails;
 ```
