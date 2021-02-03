@@ -271,7 +271,7 @@ export default Blog;
 ```
 
 
-## Mettre en place une route de PARENT => CHILD
+## Mettre en place une route de PARENT => CHILD avec PARAMS
 
 [React Router - PARAMS](https://reactrouter.com/web/example/url-params)
 

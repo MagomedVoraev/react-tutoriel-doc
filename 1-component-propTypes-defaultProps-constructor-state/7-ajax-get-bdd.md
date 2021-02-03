@@ -82,9 +82,7 @@ const loadPosts = async () => {
     // ATTENTION : on doit éviter de réécrire l'url à chaque fois, le plus simple serait 
     // de déclarer par exemple : const baseUrl = 'https://oblog-sarah-maau.herokuapp.com/api/posts'
     const response = await axios.get('https://oblog-sarah-maau.herokuapp.com/api/posts');
-
-  };
-
+};
 ```
 
 - la même chose (mais qui retourne categories au lieu de posts) MAIS AVEC `then` (sans async), _l'un n'est pas meilleur que l'autre_ :
