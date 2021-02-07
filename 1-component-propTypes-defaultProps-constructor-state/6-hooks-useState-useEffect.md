@@ -99,16 +99,38 @@ export default Blog;
 ## `useEffect`
 **_on les voit après avoir vu le cours 7-ajax_**
 
+Récupérer les useEffect depuis React : `import React, { useEffect } from 'react';`
+
+
+### componentDidMount
+Au chargement initial ET lors d'évolutions :
 ```js
-// Equivalant au componentDidUpdate
-  // La fonction de callback en paramètre du useEffect
-  // va être appellée APRES chaque render
+// La fonction de callback en paramètre du useEffect
+// va être appellée APRES chaque render
 useEffect(() => {
   console.log('Effet de bord de blog');
 });
 ```
 
+### componentDidUpdate
+UNIQUEMENT au chargement initial
+```js
+// 
+useEffect(() => {
+  console.log('A chaque update');
+}, []);
+```
 
+UNIQUEMENT si le contenu de la variable `info` change, cet effet sera relancé
+```js
+// 
+useEffect(() => {
+  console.log('A chaque update');
+}, [info]);
+```
+
+
+### componentWillUnmount
 ```js
 // Ici en deuxième paramètre de useEffect, on met un tableau VIDE
 // La première fois qu'on render, useEffect ne peux pas comparer avec sa précédente valeur ( y'en a pas ), donc il execute le callback
@@ -120,10 +142,11 @@ useEffect(() => {
 // Et la fonction de nettoyage, qu'une seule fois aussi, au démontage du composant
 // On a donc codé l'equivalent de componentDidMount et componentWillUnmount
 
+// c'est le RETURN en callback qui fait office de nettoyage / unmount
 useEffect(() => {
   console.log('Effet de bord de blog');
   return () => {
     console.log('Nettoyage de l\'effet de bord de blog');
   };
-}, []);
+}, [info]);
 ```
