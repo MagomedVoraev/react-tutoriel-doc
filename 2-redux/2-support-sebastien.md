@@ -4,7 +4,7 @@ Passer des props de composants en composants c'est trés énervant et source d'e
 
 L'idée de Redux, c'est de déporter l'état de notre application en dehors de nos composants React.
 
-![With Store](./docs/with-store.png)
+![With Store](../utils/with-store.png)
 
 ## C'est bien beau mais techniquement ?
 
@@ -16,7 +16,7 @@ Les méthodes les plus utiles de notre store sont les suivantes :
 
 ## Quelles sont les étapes ?
 
-![Flow Redux](./docs/flow.svg)
+![Flow Redux](../utils/flow.svg)
 
 - On pars d'un premier rendu, on décide de **déclencher une action**, par exemple on demande de changer de couleur.
 - On va donc utiliser le **dispatch** avec un **action** en paramètre
