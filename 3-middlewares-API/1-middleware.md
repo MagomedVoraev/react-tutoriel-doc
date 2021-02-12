@@ -23,9 +23,18 @@ Dans notre exemple on crée un fichier `auth.js`
 ```js
 export default (store) => (next) => (action) => {
     // ...on fait notre traitement ici
+    switch (action.type) {
+      // case NOM_ACTION:
+      // ...
+      // ...
 
+    }
     // et on passe au voisin
-    next(action)
+    // NE PAS OUBLIER LE MOT RETURN
+    // meme si dans ce cas précis il n'est pas nécessaire
+    // il nous arrivera d'en avoir besoin obligatoirement (le return)
+    // donc autant l'écrire tout le temps selon @Sebastien
+    return next(action)
 }
 ```
 
