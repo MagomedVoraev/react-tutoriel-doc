@@ -4,7 +4,7 @@
 
 Un middleware est un triple fléchée : une fonction qui retourne une fonction qui retourne une fonction :
 ```js
-export default store => next => (action) => {
+export default (store) => (next) => (action) => {
 // ...
 // store : store de redux, on pourra utiliser store.getState() et store.dispatch()
 
@@ -55,7 +55,7 @@ export default (store) => (next) => (action) => {
 
 5. On utilise le `auth`+`Enhancer` en le passant à `applyMiddleware`
 
-6. CODE FINAL : 
+6. CODE FINAL dans `src/store/index.js`: 
 
 ```js
 /* eslint-disable no-underscore-dangle */
