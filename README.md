@@ -1,14 +1,18 @@
 # React
 
-Créer un projet avec React.
+Créer un projet avec React :
 
+- []()
 
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- [A quoi doit ressembler la structure finale du projet et qu'est-ce qu'il y a dans chacun des dossiers / fichiers ?](https://github.com/MagomedVoraev/react-tutoriel-doc/2-structure-projet-react.md)
+All created SNIPPETS : 
+
+- `comp`
+- `impcomp`
+- `impprop`
+- `proptypes`
+- `store`
+- `reducer`
+- `container`
+- `action`
+- `formcomp`
+- `storemiddleware`

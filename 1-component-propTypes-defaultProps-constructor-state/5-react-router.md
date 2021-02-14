@@ -428,4 +428,5 @@ On remplace les `a` par `NavLink`
 5. Dans le `ParentComponent`, on met en place notre système de `routes`
 
 - `import { Route, Switch } from 'react-router-dom';`
+- Mettre entre les balises `<Switch></Switch>` tous les `Components` "dynamiques" OU qui doivent changer / s'afficher / ne pas s'afficher selon des conditions. Par exemple, le header et le footer qui doivent toujours apparaitre ne doivent pas être mis dans la balise `<Switch></Switch>`. Donc on n'y met que les routes conditionnelles.
 - 
