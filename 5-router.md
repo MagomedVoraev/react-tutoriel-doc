@@ -2,6 +2,8 @@
 
 [React Router](https://reactrouter.com/web/guides/quick-start)
 
+## Mise en place Router
+
 1. On doit commencer par importer le module :
 
 `yarn add react-router-dom`
@@ -127,4 +129,58 @@ const App = () {
 ```
 
 
-**+ BONUS : PASSAGE DE PARAMS / ROUTE DYNAMIQUE SELON PARAMS** 
+## Router + Params `useParams()`
+
+**+ BONUS : PASSAGE DE PARAMS / ROUTE DYNAMIQUE AVEC PARAMS** 
+
+Toujours dans le `mainComponent`...
+
+6. Utilisation de `params`
+
+- On ajoute une balise `<Route></Route>` dans laquelle on ajoute le `component` qu'on veut afficher selon le `params`
+- On donne à cette `Route` un attribut `path` dans lequel on aura le chemin + `/../:params`
+- On met à l'intérieur de cette balise `<Route></Route>` la childComponent qui doit être affiché sur cette route
+
+```js
+// on ajoute le path dans la route avec déclaration des params après les deux points "/:ceciEstParams"
+<Route path="/recipe/:recipeName">
+    // on met le childComponent qui doit être affiché ici
+    <Recipe recipe={recipes.list} />
+</Route>
+```
+
+7. Dans le childComponent
+
+Afin de pouvoir utiliser ces params
+
+- `import { useParams } from 'react-router-dom;'`
+
+- on déclare ce qui sera le résultat de notre `params` : `const { recipeName } = useParams();`
+
+- on lui associe une valeur : `const matchRecipe = recipe.find((element) => element.slug === recipeName);`
+
+- on l'utilise dans le `return` de notre `childComponent`
+
+```js
+// ...
+
+import { useParams } from 'react-router-dom';
+// ...
+
+const Recipe = ({ recipe }) => {
+  // déclaration des params
+  const { recipeName } = useParams();
+  // recherche de ce qui doit être l'équivalent de mon params par une fonction find
+  const matchRecipe = recipe.find((element) => element.slug === recipeName);
+
+return (
+    
+      <div className="recipe">
+        <Ingredients
+          // utilisation de params + résultat des recherches
+          list={matchRecipe.ingredients}
+        />
+      </div>
+  );
+}
+```
