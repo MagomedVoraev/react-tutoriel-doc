@@ -120,7 +120,9 @@ const App = () {
         // la route de l'error, qui est un component qu'on importe, et dans lequel on aura juste un 
         // text qui dit quelque chose du genre 'page erreur'
         // et dans les components, on fera un 'return <Redirect to="/error" />' en cas d'erreur
-        <Error />
+        <Route>
+          <Error />
+        </Route>
 
       </Switch>
     </div>
@@ -174,7 +176,6 @@ const Recipe = ({ recipe }) => {
   const matchRecipe = recipe.find((element) => element.slug === recipeName);
 
 return (
-    
       <div className="recipe">
         <Ingredients
           // utilisation de params + résultat des recherches

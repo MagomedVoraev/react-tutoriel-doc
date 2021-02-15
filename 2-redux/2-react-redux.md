@@ -1,14 +1,40 @@
 # REDUX avec React
+[Documentation.](https://react-redux.js.org/)
 
 1. `yarn add react-redux`
 
-[Documentation.](https://react-redux.js.org/)
+2. Dans le `src/index.js`
 
-2. `import { createStore } from 'redux';`
+- `import { Provider } from 'react-redux';` + utilisation de `Provider` en mettant notre `mainComponent` dedans
+
+- CRÉER un dossier store à `src/store`, dedans :
+  - index.js => faire notre snippet `store`
+  - reducer.js => faire notre snippet `reducer`
+
+- importer ce store dans `src/index.js` : `import store from 'src/store';`
+
+```js
+// importation du redux
+import { Provider } from 'react-redux';
+// ...
+// importation du store
+import store from 'src/store';
+
+const rootReactElement = (
+  // mise en place du redux en mettant Provider autour du mainComponent
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+const target = document.getElementById('root');
+
+ReactDom.render(rootReactElement, target);
+```
 
 3. Créer un dossier `src/containers`
 
-4. Créer un dossier par `components`
+4. Créer un dossier par `components` qui a besoin de `store`
 
 5. Dedans, on crée `index.js`
 
@@ -17,6 +43,7 @@
 
 ```js
 import { connect } from 'react-redux';
+// importer component
 import NbColors from 'src/components/NbColors';
 
 // nbColors est le props qu'attend le container NbColors

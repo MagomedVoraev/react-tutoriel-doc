@@ -7,7 +7,7 @@ Créer un projet avec React :
 - [Middleware]()
 - [API-AJAX]()
 
-## All created SNIPPETS : 
+## All created [SNIPPETS](https://github.com/MagomedVoraev/react-tutoriel-doc/blob/only-important/snippets.md) : 
 
 - `comp`
 - `impcomp`

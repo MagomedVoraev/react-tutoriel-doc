@@ -87,3 +87,26 @@ export default store;
 ```
 
 [COURS numéro 3 arrêté à 47min20sec](https://drive.google.com/drive/folders/1g3f5hAHrBvtE8FlvtwMR78ZZVXDqxX_4)
+
+
+- `yarn add axios`
+
+- créer un fichier `src/api.js`
+
+```js
+import axios from 'axios';
+
+export default axios.create({
+  // ici, le lien de l'API pour récupérer les données
+  baseURL: 'http://localhost:3001',
+  timeout: 1000,
+});
+```
+
+- créer un dossier `src/middleware`
+- créer dedans un fichier de ce qu'on compte faire dans ce middleware (exemple auth.js)
+- importer axios dans ce fichier 
+
+```js
+import axios from 'src/api';
+```
