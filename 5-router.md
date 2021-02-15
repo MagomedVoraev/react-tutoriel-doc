@@ -179,6 +179,7 @@ return (
       <div className="recipe">
         <Ingredients
           // utilisation de params + résultat des recherches
+          // qui se trouve dans matchRecipe développé plus haut
           list={matchRecipe.ingredients}
         />
       </div>

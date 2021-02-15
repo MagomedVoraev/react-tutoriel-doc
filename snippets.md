@@ -16,9 +16,19 @@ All created SNIPPETS :
 - `action`
 - `formcomp`
 - `storemiddleware`
+- `reducerIndex`
+- `middleware`
 
-```
-"Create component": {
+```JSON
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"Create component": {
 		"scope": "javascript,typescript",
 		"prefix": "comp",
 		"body": [
@@ -69,12 +79,12 @@ All created SNIPPETS :
 	},
 	"Basic store": {
 		"scope": "javascript",
-		"prefix": "store",
+		"prefix": "storeNoMiddleware",
 		"body": [
 			"/* eslint-disable no-underscore-dangle */",
 			"import { createStore } from 'redux';",
 			"",
-			"import reducer from './reducer';",
+			"import reducer from 'src/reducer';",
 			"",
 			"const store = createStore(",
 			"  reducer,",
@@ -90,19 +100,17 @@ All created SNIPPETS :
 		"scope": "javascript",
 		"prefix": "reducer",
 		"body": [
+			"// créer plusieurs fichiers dans le dossier reducers",
 			"const INITIAL_STATE = {",
 			"  $1",
 			"};",
 			"",
-			"const reducer = (state = INITIAL_STATE, action = {}) => {",
+			"export default (state = INITIAL_STATE, action = {}) => {",
 			"  switch (action.type) {",
 			"    default:",
 			"      return state;",
 			"  }",
 			"};",
-			"",
-			"export default reducer;",
-			""
 		]
 	},
 	"Container": {
@@ -192,23 +200,60 @@ All created SNIPPETS :
 		"prefix": "storemiddleware",
 		"body": [
 			"import { createStore, applyMiddleware, compose } from 'redux';",
-			"import $1Middleware from 'src/middleware/$1';",
-			"import reducer from './reducer';",
+			"import $1Middleware from 'src/middlewares/$1';",
+			"// on importe le dossier reducers",
+			"import rootReducer from 'src/reducers';",
 			"",
 			"const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;",
 			"",
 			"// On créé le store en lui donnant le reducer afin transformer les actions",
 			"// en changement d'état, et pour calculer aussi l'état initial",
-			"const store = createStore(",
-			"  reducer, /* preloadedState, */",
-			"  composeEnhancers(",
-			"    applyMiddleware(",
-			"      $1Middleware,",
-			"    ),",
+			"",
+			"const enhancers = composeEnhancers(",
+			"  applyMiddleware(",
+			"	 // ici, nous rajoutons tous les middlewares + IMPORT",
+			"    $1Middleware,",
 			"  ),",
 			");",
 			"",
+			"const store = createStore(rootReducer, enhancers);",
+			"",
 			"export default store;",
 		]
+	},
+	"Index Reducer combineReducers": {
+		"scope": "javascript",
+		"prefix": "reducerIndex",
+		"body": [
+			"// ce fichier sera crée dans le dossier reducers et sera nommé index.js",
+			"import { combineReducers } from 'redux';",
+			"import $1 from './$1';",
+			"import $2 from './$2';",
+			"",
+			"export default combineReducers({",
+			"  $1,",
+			"  $2,",
+			"});",
+		]
+	},
+	"Middleware React : store, next, action": {
+		"scope": "javascript",
+		"prefix": "middleware",
+		"body": [
+			"// nous sommes dans src/middlewares/nomDuFichier.js",
+			"// j'importe ACTION et son fichier",
+			"import { $1 } from 'src/actions/$2';",
+			"",
+			"export default (store) => (next) => (action) => {",
+			"  console.log('je suis dans le middleware');",
+			"  switch (action.type) {",
+			"    case $1:",
+			"    // ...",
+			"    break;",
+			"  }",
+			"};",
+		]
 	}
+}
+
 ```

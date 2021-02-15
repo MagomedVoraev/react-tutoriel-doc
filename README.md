@@ -19,3 +19,5 @@ Créer un projet avec React :
 - `action`
 - `formcomp`
 - `storemiddleware`
+- `reducerIndex`
+- `middleware`
