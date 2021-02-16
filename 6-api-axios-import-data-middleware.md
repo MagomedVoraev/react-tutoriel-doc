@@ -1,5 +1,7 @@
 # API - Middleware
 
+[Fiches Récap KOUROU](https://kourou.oclock.io/ressources/fiche-recap/redux-avance/#appliquer-un-middleware)
+
 1. Dans le `MainComponent`
 
 - déclarer un `useEffect` avant le `return` du JSX
@@ -187,6 +189,12 @@ import { GET_DATA, setData } from 'src/actions/';
 import axios from 'src/api';
 
 export default (store) => (next) => (action) => {
+  // Si nous voulons traiter des données de state qui sont dans store,
+  // il faut les décomposer ici en utilisant la fonction getState() de redux :
+  // ex: on récupère email et password qui sont dans l'objet settings qui sont dans le store/reducer
+  const { settings: { email, password } } = store.getState();
+  // l'exemple d'en haut store.getState() n'a pas de rapport direct notre axios
+  
   console.log('je suis dans le middleware');
   switch (action.type) {
     case GET_DATA:
